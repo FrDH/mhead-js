@@ -1,0 +1,231 @@
+/*
+	jQuery.mhead CSS
+*/
+
+
+$mh_padding			: 10px !default;
+$mh_btnSize			: 40px !default;
+$mh_fontSize		: 14px !default;
+
+$mh_background		: #eee !default;
+$mh_color 			: #666 !default;
+
+
+.mh-head
+{
+			text-align: center;
+	padding: 0 $mh_padding;
+	margin: 0;
+	position: relative;
+
+	background: $mh_background;
+	color: $mh_color;
+
+	a
+	{
+		color: inherit;
+		text-decoration: none;
+	}
+
+
+	//	Sizes
+	height: $mh_btnSize;
+	&.mh-size-2
+	{
+		height: $mh_btnSize * 2;
+	}
+	&.mh-size-3
+	{
+		height: $mh_btnSize * 3
+	}
+
+
+	//	Buttons
+	&.mh-btns-left
+	{
+		padding-left: $mh_padding + $mh_btnSize;
+	}
+	&.mh-btns-left-2
+	{
+		padding-left: $mh_padding + $mh_btnSize * 2;
+	}
+	&.mh-btns-left-3
+	{
+		padding-left: $mh_padding + $mh_btnSize * 3;
+	}
+
+	&.mh-btns-right
+	{
+		padding-right: $mh_padding+ $mh_btnSize;
+	}
+	&.mh-btns-right-2
+	{
+		padding-right: $mh_padding + $mh_btnSize * 2;
+	}
+	&.mh-btns-right-3
+	{
+		padding-right: $mh_padding + $mh_btnSize * 3;
+	}
+
+	.mh-btns-left,
+	.mh-btns-right
+	{
+		display: block;
+		width: $mh_btnSize;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+	}
+	.mh-btns-left
+	{
+		left: $mh_padding;
+	}
+	.mh-btns-right
+	{
+		right: $mh_padding;
+	}
+	&.mh-btns-left-2 .mh-btns-left,
+	&.mh-btns-right-2 .mh-btns-right
+	{
+		width: $mh_btnSize * 2;
+	}
+	&.mh-btns-left-3 .mh-btns-left,
+	&.mh-btns-right-3 .mh-btns-right
+	{
+		width: $mh_btnSize * 3;
+	}
+
+	.mh-btns-left,
+	.mh-btns-right
+	{
+		> *
+		{
+			text-align: center;
+			font-size: 18px;
+			line-height: $mh_btnSize - ( $mh_padding * 2 );
+			width: $mh_btnSize;
+			display: block;
+			padding: $mh_padding 0;
+			position: absolute;
+			top: 50%;
+			transform: translateY( -50% );
+		
+			&:nth-child( 1 )
+			{
+				left: 0;
+			}
+			&:nth-child( 2 )
+			{
+				left: $mh_btnSize;
+			}
+			&:nth-child( 3 )
+			{
+				left: $mh_btnSize * 2;
+			}
+		}
+	}
+
+
+	//	Text
+	.mh-text
+	{
+		line-height: $mh_btnSize - ( $mh_padding * 2 );
+		display: block;
+		padding: $mh_padding;
+	}
+	&.mh-align-left .mh-text
+	{
+		text-align: left;
+	}
+	&.mh-align-right .mh-text
+	{
+		text-align: right;
+	}
+
+
+	//	Logo / image
+	.mh-logo,
+	.mh-image
+	{
+		background: none center center transparent no-repeat;
+		display: block;
+		height: 100%;
+	}
+	.mh-logo
+	{
+		background-size: contain;
+		background-clip: content-box;
+		padding: $mh_padding;
+	}
+	&.mh-align-left .mh-logo
+	{
+		background-position: left center;
+	}
+	&.mh-align-right .mh-logo
+	{
+		background-position: right center;
+	}
+	.mh-image
+	{
+		background-size: cover;
+	}
+
+
+	//	Effects
+	&.mh-sticky
+	{
+		position: sticky;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 10;
+		transition: transform 0.2s ease;
+		transform: translate3d( 0, 0, 0 );
+
+		&.mh-scrolledout
+		{
+			transform: translate3d( 0, -100%, 0 );
+		}
+	}
+}
+
+
+
+
+
+.mh-head .mh-image,
+.mh-head .mh-logo
+{
+	background-image: url(http://lorempixel.com/400/200/);
+}
+
+.mh-head .mh-form
+{
+	display: block;
+
+	line-height: 20px;
+	padding: 10px 20px;
+}
+
+.mh-head .mh-form input
+{
+	background: #fff;
+	border: none;
+	outline: 0;
+	box-shadow: none;
+	border-radius: 4px;
+	font: inherit;
+    font-size: inherit;
+    line-height: inherit;
+	font-size: 14px;
+	line-height: 26px;
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	height: 26px;
+	min-height: 26px;
+	max-height: 26px;
+	margin: 0;
+	padding: 0 10px;
+}
+

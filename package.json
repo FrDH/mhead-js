@@ -1,0 +1,30 @@
+{
+  "name": "jquery.mhead",
+  "version": "1.0.0",
+  "main": "dist/jquery.mhead.js",
+  "author": "Fred Heusschen <info@frebsite.nl>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FrDH/jQuery.mhead.git"
+  },
+  "description": "A small framework for creating a beautiful mobile navigation header to accompany the jQuery.mmenu menu on your website and webapp.",
+  "keywords": [
+    "app",
+    "mobile",
+    "navigation",
+    "head",
+    "header",
+    "navbar"
+  ],
+  "license": "CC-BY-NC-4.0",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-clean-css": "^2.0.13",
+    "gulp-sass": "^3.1.0",
+    "gulp-typescript": "^3.1.6",
+    "gulp-uglify": "^1.5.1",
+    "gulp-umd": "^0.2.0",
+    "typescript": "^2.2.2"
+  }
+}
