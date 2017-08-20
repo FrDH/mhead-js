@@ -26,8 +26,8 @@
 			}
 			.mh-text
 			{
-				font-size: 30px;
-				font-family: 'Pacifico', Arial, sans-serif;
+				font-size: 16px;
+				font-weight: bold;
 			}
 		</style>
 
@@ -35,11 +35,7 @@
 			$(function() {
 
 				//	create a menu
-				$('#menu').mmenu({
-					offCanvas: {
-						position: 'right'
-					}
-				});
+				$('#menu').mmenu();
 
 				//	fire the plugin
 				$('.mh-head').mhead();
@@ -57,13 +53,13 @@
 
 		<div id="page">
 
-			<div class="mh-head mh-align-left Sticky">
-				<span class="mh-text">demo</span>
-				<span class="mh-btns-right">
+			<div class="mh-head Sticky">
+				<span class="mh-btns-left">
 					<a class="fa fa-bars" href="#menu"></a>
 				</span>
+				<span class="mh-text">demo</span>
 			</div>
-
+			
 			<div class="content">
 				<p><strong>This is a demo.</strong><br />
 					Scroll down to see the header in action.</p>
@@ -79,21 +75,21 @@
 
 			<nav id="menu">
 				<ul>
-					<li><a href="#">Home</a></li>
+					<li><a href="#/">Home</a></li>
 					<li><span>About us</span>
 						<ul>
-							<li><a href="#about/history">History</a></li>
+							<li><a href="#/about/history">History</a></li>
 							<li><span>The team</span>
 								<ul>
-									<li><a href="#about/team/management">Management</a></li>
-									<li><a href="#about/team/sales">Sales</a></li>
-									<li><a href="#about/team/development">Development</a></li>
+									<li><a href="#/about/team/management">Management</a></li>
+									<li><a href="#/about/team/sales">Sales</a></li>
+									<li><a href="#/about/team/development">Development</a></li>
 								</ul>
 							</li>
-							<li><a href="#about/address">Our address</a></li>
+							<li><a href="#/about/address">Our address</a></li>
 						</ul>
 					</li>
-					<li><a href="#contact">Contact</a></li>
+					<li><a href="#/contact">Contact</a></li>
 				</ul>
 			</nav>
 		</div>

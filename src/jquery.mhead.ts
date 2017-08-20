@@ -1,5 +1,5 @@
 /*
- * jQuery mhead v1.0.0
+ * jQuery mhead v1.0.1
  * @requires jQuery 1.7.0 or later
  *
  * mmenu.frebsite.nl/mhead-plugin
@@ -14,7 +14,7 @@
 (function( $ ) {
 
 	const _PLUGIN_  = 'mhead';
-	const _VERSION_	= '1.0.0';
+	const _VERSION_	= '1.0.1';
 
 
 	//	Newer version of the plugin already excists
@@ -34,6 +34,7 @@
 		this.conf 	= conf;
 
 		this._initButtons();
+		this._initList();
 		this._initHamburger();
 		this._initScroll();
 
@@ -56,6 +57,7 @@
 
 	$[ _PLUGIN_ ].configuration = {
 		initButtons 	: true,
+		initList		: true,
 		initHamburger	: true,
 		initScroll		: true
 	};
@@ -112,6 +114,23 @@
 			}
 
 			return this;
+		},
+
+		_initList: function()
+		{
+			if ( !this.conf.initList )
+			{
+				return this;
+			}
+			this.$head
+				.find( '.' + _c.list )
+				.each(
+					function()
+					{
+						$(this).children().appendTo( this );
+					}
+				);
+
 		},
 
 		_initScroll: function()
@@ -240,7 +259,7 @@
 					//	Open menu, animate hamburger
 					var API = $menu.data( "mmenu" );
 
-					$b.on( "click", function() {
+					$b.on( _e.click, function() {
 					   API.open();
 					});
 
@@ -338,7 +357,7 @@
 
 		//	Classnames
 		_c.mh = function( c ) { return 'mh-' + c; };
-		_c.add( 'head sticky scrolledout btns align hamburger' );
+		_c.add( 'head sticky scrolledout align btns list hamburger' );
 		_c.umh = function( c )
 		{
 			if ( c.slice( 0, 3 ) == 'mh-' )
@@ -350,11 +369,10 @@
 
 		//	Datanames
 		_d.mh = function( d ) { return 'mh-' + d; };
-		_d.add( 'top' );
 
 		//	Eventnames
 		_e.mh = function( e ) { return e + '.mh'; };
-		_e.add( 'scroll' );
+		_e.add( 'scroll click' );
 
 
 		$[ _PLUGIN_ ]._c = _c;

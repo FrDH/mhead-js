@@ -1,0 +1,93 @@
+/*
+	jQuery.mhead buttons CSS
+*/
+
+
+.mh-head
+{
+
+	&.mh-btns-left
+	{
+		padding-left: $mh_padding + $mh_btnSize;
+	}
+	&.mh-btns-left-2
+	{
+		padding-left: $mh_padding + $mh_btnSize * 2;
+	}
+	&.mh-btns-left-3
+	{
+		padding-left: $mh_padding + $mh_btnSize * 3;
+	}
+
+	&.mh-btns-right
+	{
+		padding-right: $mh_padding+ $mh_btnSize;
+	}
+	&.mh-btns-right-2
+	{
+		padding-right: $mh_padding + $mh_btnSize * 2;
+	}
+	&.mh-btns-right-3
+	{
+		padding-right: $mh_padding + $mh_btnSize * 3;
+	}
+
+	.mh-btns-left,
+	.mh-btns-right
+	{
+		display: block;
+		width: $mh_btnSize;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+	}
+	.mh-btns-left
+	{
+		left: $mh_padding;
+	}
+	.mh-btns-right
+	{
+		right: $mh_padding;
+	}
+	&.mh-btns-left-2 .mh-btns-left,
+	&.mh-btns-right-2 .mh-btns-right
+	{
+		width: $mh_btnSize * 2;
+	}
+	&.mh-btns-left-3 .mh-btns-left,
+	&.mh-btns-right-3 .mh-btns-right
+	{
+		width: $mh_btnSize * 3;
+	}
+
+	.mh-btns-left,
+	.mh-btns-right
+	{
+		> *
+		{
+			text-align: center;
+			font-size: 18px;
+			line-height: $mh_btnSize - ( $mh_padding * 2 );
+			width: $mh_btnSize;
+			display: block;
+			padding: $mh_padding 0;
+			position: absolute;
+			top: 50%;
+			transform: translateY( -50% );
+		
+			&:nth-child( 1 )
+			{
+				left: 0;
+			}
+			&:nth-child( 2 )
+			{
+				left: $mh_btnSize;
+			}
+			&:nth-child( 3 )
+			{
+				left: $mh_btnSize * 2;
+			}
+		}
+	}
+
+}
