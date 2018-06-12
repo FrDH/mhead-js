@@ -13,8 +13,8 @@
 
 		<script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.js"></script>
 
-		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jQuery.mmenu/6.1.4/jquery.mmenu.all.css">
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.mmenu/6.1.4/jquery.mmenu.all.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jQuery.mmenu/7.0.0/jquery.mmenu.all.css">
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.mmenu/7.0.0/jquery.mmenu.all.js"></script>
 
 		<link rel="stylesheet" type="text/css" href="../dist/jquery.mhead.css">
 		<script type="text/javascript" src="../dist/jquery.mhead.js"></script>
@@ -39,11 +39,9 @@
 				//	create the menus
 				$('#menu').mmenu();
 				$('#shoppingbag').mmenu({
+					extensions: [ 'position-right' ],
 					navbar: {
 						title: 'Shoppingbag'
-					},
-					offCanvas: {
-						position: 'right'
 					}
 				});
 

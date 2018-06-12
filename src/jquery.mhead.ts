@@ -1,5 +1,5 @@
 /*
- * jQuery mhead v1.0.1
+ * jQuery mhead v1.0.2
  * @requires jQuery 1.7.0 or later
  *
  * mmenu.frebsite.nl/mhead-plugin
@@ -14,7 +14,7 @@
 (function( $ ) {
 
 	const _PLUGIN_  = 'mhead';
-	const _VERSION_	= '1.0.1';
+	const _VERSION_	= '1.0.2';
 
 
 	//	Newer version of the plugin already excists

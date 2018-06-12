@@ -1,6 +1,6 @@
 {
 	"name"			: "jQuery.mhead",
-	"version"		: "1.0.1",
+	"version"		: "1.0.2",
 	"main": [
 		"dist/jquery.mhead.js",
 		"dist/jquery.mhead.css"

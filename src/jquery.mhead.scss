@@ -32,14 +32,14 @@ $mh_inputBackground	: #fff !default;
 
 
 	//	Sizes
-	height: $mh_btnSize;
+	min-height: $mh_btnSize;
 	&.mh-size-2
 	{
-		height: $mh_btnSize * 2;
+		min-height: $mh_btnSize * 2;
 	}
 	&.mh-size-3
 	{
-		height: $mh_btnSize * 3
+		min-height: $mh_btnSize * 3
 	}
 
 

@@ -1,6 +1,6 @@
 {
 	"name"			: "jQuery.mhead",
-	"version"		: "1.0.1",
+	"version"		: "1.0.2",
 	"authors"		: "Fred Heusschen <info@frebsite.nl>",
 	"description"	: "A small framework for creating a beautiful mobile navigation header to accompany the jQuery.mmenu menu on your website and webapp.",
 	"keywords"		: [
