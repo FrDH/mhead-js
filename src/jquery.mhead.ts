@@ -161,7 +161,7 @@
 
 			glbl.$wndw
 				.on( _e.scroll,
-					function()
+					function( event, isInit )
 					{
 						var pos = glbl.$wndw.scrollTop(),
 							dif = lastYpos - pos,
@@ -173,6 +173,10 @@
 						if ( scrolledout === null )
 						{
 							scrolledout = pos > that.opts.scroll.show;
+						}
+
+						if ( isInit ) {
+							dir = 'up';
 						}
 
 						//	If scrolledout
@@ -208,7 +212,7 @@
 						}
 					}
 				)
-				.trigger( _e.scroll );
+				.trigger( _e.scroll, [ true ] );
 
 			return this;
 		},
