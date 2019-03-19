@@ -175,13 +175,13 @@
 							scrolledout = pos > that.opts.scroll.show;
 						}
 
-						if ( isInit ) {
-							dir = 'up';
-						}
-
 						//	If scrolledout
 						if ( scrolledout )
 						{
+							if ( isInit ) {
+								scrolledout = false;
+							}
+
 							//	If scrolling up
 							if ( dir == 'up' )
 							{
