@@ -32,6 +32,9 @@
 		this.$head  = $head;
 		this.opts 	= opts;
 		this.conf 	= conf;
+		this.cbck 	= {};
+
+		this._initHooks();
 
 		this._initButtons();
 		this._initList();
@@ -44,6 +47,7 @@
 	$[ _PLUGIN_ ].version = _VERSION_;
 
 	$[ _PLUGIN_ ].defaults = {
+		hooks 		: {},
 		scroll 		: {
 			hide 		: 0,
 			show		: 0,
@@ -63,6 +67,14 @@
 	};
 
 	$[ _PLUGIN_ ].prototype = {
+
+		_initHooks: function()
+		{
+			for ( var h in this.opts.hooks )
+			{
+				this.bind( h, this.opts.hooks[ h ] );
+			}
+		},
 
 		_initButtons: function()
 		{
@@ -190,7 +202,8 @@
 									dif > that.opts.scroll.tolerance )
 								{
 									scrolledout = false;
-									that.$head.removeClass( _c.scrolledout );
+									that.trigger('scrolledIn:before');
+									that.$head.removeClass(_c.scrolledout);
 								}
 							}
 						}
@@ -206,6 +219,7 @@
 									dif > that.opts.scroll.tolerance )
 								{
 									scrolledout = true;
+									that.trigger('scrolledOut:before');
 									that.$head.addClass( _c.scrolledout );
 								}
 							}
@@ -281,6 +295,27 @@
 			);
 
 			return this;
+		},
+
+		bind: function( evnt, fn )
+		{
+			this.cbck[ evnt ] = this.cbck[ evnt ] || [];
+			this.cbck[ evnt ].push( fn );
+		},
+
+		trigger: function()
+		{
+			var that = this,
+				args = Array.prototype.slice.call( arguments ),
+				evnt = args.shift();
+
+			if ( this.cbck[ evnt ] )
+			{
+				for ( var e = 0, l = this.cbck[ evnt ].length; e < l; e++ )
+				{
+					this.cbck[ evnt ][ e ].apply( that, args );
+				}
+			}
 		}
 	};
 
