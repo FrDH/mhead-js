@@ -144,6 +144,11 @@
 				return this;
 			}
 
+			//	Find minimum
+			var _min = this.$head.offset().top + this.$head.outerHeight();
+			this.opts.scroll.hide = Math.max( _min, this.opts.scroll.hide || 0 );
+			this.opts.scroll.show = Math.max( _min, this.opts.scroll.show || 0 );
+
 			if ( !this.$head.hasClass( _c.sticky ) )
 			{
 				this.$head.addClass( _c.sticky );
@@ -154,14 +159,9 @@
 			var lastYpos = 0,
 				scrolledout = null;
 
-			//	Find minimum
-			var _min = this.$head.offset().top + this.$head.outerHeight();
-			this.opts.scroll.hide = Math.max( _min, this.opts.scroll.hide || 0 );
-			this.opts.scroll.show = Math.max( _min, this.opts.scroll.show || 0 );
-
 			glbl.$wndw
 				.on( _e.scroll,
-					function()
+					function( event, isInit )
 					{
 						var pos = glbl.$wndw.scrollTop(),
 							dif = lastYpos - pos,
@@ -173,6 +173,10 @@
 						if ( scrolledout === null )
 						{
 							scrolledout = pos > that.opts.scroll.show;
+						}
+
+						if ( isInit ) {
+							dir = 'up';
 						}
 
 						//	If scrolledout
@@ -208,7 +212,7 @@
 						}
 					}
 				)
-				.trigger( _e.scroll );
+				.trigger( _e.scroll, [ true ] );
 
 			return this;
 		},
