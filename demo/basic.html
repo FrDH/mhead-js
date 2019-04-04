@@ -38,7 +38,16 @@
 				$('#menu').mmenu();
 
 				//	fire the plugin
-				$('.mh-head').mhead();
+				$('.mh-head').mhead({
+					hooks: {
+						'scrolledIn:before': function () {
+							console.log('scrolledIn');
+						},
+						'scrolledOut:before': function () {
+							console.log('scrolledOut');
+						}
+					}
+				});
 
 				//	for demo only
 				$('a[href^="#/"]').click(function() {
