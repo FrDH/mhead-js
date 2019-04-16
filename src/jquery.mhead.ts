@@ -202,7 +202,7 @@
 									dif > that.opts.scroll.tolerance )
 								{
 									scrolledout = false;
-									that.trigger('scrolledIn:before');
+									that.trigger('scrolledIn');
 									that.$head.removeClass(_c.scrolledout);
 								}
 							}
@@ -219,7 +219,7 @@
 									dif > that.opts.scroll.tolerance )
 								{
 									scrolledout = true;
-									that.trigger('scrolledOut:before');
+									that.trigger('scrolledOut');
 									that.$head.addClass( _c.scrolledout );
 								}
 							}
