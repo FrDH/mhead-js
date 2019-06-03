@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="author" content="mmenujs.com" />
+		<meta content="width=600px user-scalable=yes" name="viewport" />
+		<meta name="robots" content="noindex, nofollow" />
+
+		<title>mhead.js demo</title>
+
+		<link rel="stylesheet" type="text/css" href="css/demo.css">
+		<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Pacifico" />
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="../dist/mhead.css">
+	</head>
+	<body>
+
+		<div id="page">
+
+			<div class="header" style="padding-bottom: 0px;">
+				<span>demo</span>
+			</div>
+
+			<form class="header sticky">
+				<a class="fa fa-bars" href="#/menu"></a>
+				<input placeholder="search" />
+				<button type="submit" class="fa fa-search"></button>
+			</form>
+
+			<div class="content">
+				<p><strong>This is a demo.</strong><br />
+					Scroll down to see the header in action.</p>
+			</div>
+
+			<div class="content">
+				<p><strong>Scroll a bit faster.</strong><br />
+					If the header did not yet disappear.</p>
+			</div>
+
+			<div class="content">
+				<p><strong>Now scroll back up.</strong><br />
+					To make the header appear again.</p>
+			</div>
+		</div>
+
+		<script src="../dist/mhead.js"></script>
+		<script>
+
+			//	Create the sticky header.
+			new Mhead( '.header.sticky', {
+				scroll : {
+					hide: 200
+				},
+				// hooks: {
+				// 	'scrolledIn': function () {
+				// 		console.log('scrolledIn');
+				// 	},
+				// 	'scrolledOut': function () {
+				// 		console.log('scrolledOut');
+				// 	}
+				// }
+			});
+
+
+			//	For the demo.
+			document.addEventListener('click', ( evnt ) => {
+				if (evnt.target.closest('a[href^="#/"]')) {
+					evnt.preventDefault();
+					alert( 'Thank you for clicking, but that\'s a demo link.' );
+				}
+			});
+		</script>
+
+	</body>
+</html>

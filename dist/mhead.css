@@ -1,0 +1,10 @@
+/*!
+ * mhead.js
+ * mmenu.frebsite.nl/mhead-plugin
+ *
+ * Copyright (c) Fred Heusschen
+ * www.frebsite.nl
+ *
+ * License: CC-BY-4.0
+ * http://creativecommons.org/licenses/by/4.0/
+ */.mh-sticky{position:-webkit-sticky;position:sticky;top:0;z-index:10;-webkit-transition:-webkit-transform .2s ease;transition:-webkit-transform .2s ease;-o-transition:transform .2s ease;transition:transform .2s ease;transition:transform .2s ease,-webkit-transform .2s ease;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}.mh-sticky.mh-unpinned{-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}

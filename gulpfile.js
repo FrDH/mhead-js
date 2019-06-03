@@ -1,91 +1,66 @@
 /*
 	Tasks:
 
-	$ gulp 					: Runs "css" and "js" tasks
-	$ gulp watch			: Starts a watch on "css" and "js" tasks
+	$ gulp 			: Runs "css" and "js" tasks
+	$ gulp watch	: Starts a watch on "css" and "js" tasks
 */
 
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const autoprefixer = require('gulp-autoprefixer');
+const cleancss = require('gulp-clean-css');
+const typescript = require('gulp-typescript');
+const webpack = require('webpack-stream');
 
-var gulp 			= require( 'gulp' ),
-	sass 			= require( 'gulp-sass' ),
-	autoprefixer 	= require( 'gulp-autoprefixer' ),
-	cleancss		= require( 'gulp-clean-css' ),
-	uglify 			= require( 'gulp-uglify' ),
-	umd				= require( 'gulp-umd' ),
-	typescript		= require( 'gulp-typescript' );
+const inputDir = 'src';
+const outputDir = 'dist';
 
+exports.css = css = () => {
+    return gulp
+        .src(inputDir + '/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefixer(['> 5%', 'last 5 versions']))
+        .pipe(cleancss())
+        .pipe(gulp.dest(outputDir));
+};
 
-var inputDir 		= 'src',
-	outputDir 		= 'dist';
+// Transpile all TS files to JS.
+const JStranspile = cb => {
+    return gulp
+        .src(inputDir + '/**/*.ts')
+        .pipe(
+            typescript({
+                target: 'es6',
+                module: 'es6'
+            })
+        )
+        .pipe(gulp.dest(outputDir));
+};
 
+// Pack the files.
+const JSpack = () => {
+    return gulp
+        .src(inputDir + '/mhead.js')
+        .pipe(
+            webpack({
+                // mode: 'development',
+                mode: 'production',
+                output: {
+                    filename: 'mhead.js'
+                }
+                // optimization: {
+                //     minimize: false
+                // }
+            })
+        )
+        .pipe(gulp.dest(outputDir));
+};
 
-function sanitizeNamespaceForUmd( file ) {
-	path = file.path.split( '\\' ).join( '/' ).split( '/' );
-	path = path[ path.length - 1 ];
-	return path.split( '.' ).join( '_' );
-}
+exports.js = js = gulp.series(JStranspile, JSpack);
+exports.default = gulp.parallel(js, css);
 
-
-
-
-/*
-	$ gulp
-*/
-
-gulp.task( 'default', function() {
-	gulp.start( [ 'js', 'css' ] );
-});
-
-
-
-/*
-	$ gulp watch
-*/
-
-gulp.task( 'watch', function() {
-	gulp.watch( inputDir + '/*.scss'	, [ 'css' ] );
-	gulp.watch( inputDir + '/*.ts'		, [ 'js'  ] );
-});
-
-
-
-/*
-	$ gulp css
-*/
-
-gulp.task( 'css', function() {
-
-	return gulp.src( inputDir + '/*.scss' )
-    	.pipe( sass().on( 'error', sass.logError ) )
-    	.pipe( autoprefixer( [ '> 5%', 'last 5 versions' ] ) )
-    	.pipe( cleancss() )
-		.pipe( gulp.dest( outputDir ) );
-});
-
-
-
-
-
-/*
-	$ gulp js
-*/
-
-gulp.task( 'js', function() {
-
-	return gulp.src([
-			inputDir + '/*.ts'
-		])
-		.pipe( typescript() )
-		.pipe( uglify({ preserveComments: 'license' }) )
-		.pipe( umd({
-			dependencies: function() { return [ {
-				name 	: 'jquery',
-				global 	: 'jQuery',
-				param 	: 'jQuery'
-			} ]; },
-			exports: function() { return true; },
-			namespace: sanitizeNamespaceForUmd
-		}))
-		.pipe( gulp.dest( outputDir ) );
-});
-
+exports.watch = cb => {
+    gulp.watch('src/**/*.ts', js);
+    gulp.watch('src/**/*.scss', css);
+    cb();
+};
