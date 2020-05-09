@@ -6,10 +6,12 @@ import version from '../_version';
 export default class Mhead {
     /**
      * Create a sticky header.
-     * @param {HTMLElement|string} 	header						The header node.
+     * @param {HTMLElement|string} 	header						(Selector for) the header node.
      * @param {object} 				[options=Mhead.options]		Options for the header.
      */
-    constructor(header, options = Mhead.options) {
+    constructor(header, options = {}) {
+        /**	Options for the header. */
+        this.opts = {};
         //	Get header node from string or element.
         this.header =
             typeof header == 'string' ? document.querySelector(header) : header;
@@ -18,22 +20,24 @@ export default class Mhead {
             return;
         }
         //	Extend options from defaults.
-        this.opts = Object.assign(options, Mhead.options);
-        this.initHooks();
+        const keys = Object.keys(Mhead.options);
+        for (let o = 0; o < keys.length; o++) {
+            this.opts[keys[o]] = options[keys[o]] || Mhead.options[keys[o]];
+        }
         this.initScroll();
     }
     /**
      * Initiate the scroll functionality.
      */
     initScroll() {
-        if (!this.opts.scroll || this.opts.scroll.unpin === false) {
+        if (this.opts.unpin === false) {
             return;
         }
         this.header.classList.add('mh-sticky');
         /** Minimum scroll position to unpin / hide the header. */
         var _min = this.header.offsetHeight * 2;
-        this.opts.scroll.unpin = Math.max(_min, this.opts.scroll.unpin || 0);
-        this.opts.scroll.pin = Math.max(_min, this.opts.scroll.pin || 0);
+        this.opts.unpin = Math.max(_min, this.opts.unpin || 0);
+        this.opts.pin = Math.max(_min, this.opts.pin || 0);
         this.state = null;
         /** Previous scroll position. */
         var lastYpos = 0;
@@ -51,8 +55,7 @@ export default class Mhead {
                 //	If scrolling up
                 if (dir == 'up') {
                     //	If scrolling fast enough or past minimum
-                    if (pos < this.opts.scroll.pin ||
-                        dif > this.opts.scroll.tolerance) {
+                    if (pos < this.opts.pin || dif > this.opts.tolerance) {
                         this.pin();
                     }
                 }
@@ -62,8 +65,7 @@ export default class Mhead {
                 //	If scrolling down.
                 if (dir == 'down') {
                     //	If scrolling fast enough and past minimum.
-                    if (pos > this.opts.scroll.unpin &&
-                        dif > this.opts.scroll.tolerance) {
+                    if (pos > this.opts.unpin && dif > this.opts.tolerance) {
                         this.unpin();
                     }
                 }
@@ -73,7 +75,7 @@ export default class Mhead {
             }
         };
         window.addEventListener('scroll', onscroll, {
-            passive: true
+            passive: true,
         });
         onscroll();
     }
@@ -84,7 +86,6 @@ export default class Mhead {
         this.header.classList.add('mh-pinned');
         this.header.classList.remove('mh-unpinned');
         this.state = Mhead.PINNED;
-        this.trigger('pinned');
     }
     /**
      * Release the header from the top of the viewport.
@@ -93,39 +94,6 @@ export default class Mhead {
         this.header.classList.remove('mh-pinned');
         this.header.classList.add('mh-unpinned');
         this.state = Mhead.UNPINNED;
-        this.trigger('unpinned');
-    }
-    /**
-     * Bind the hooks specified in the options (publisher).
-     */
-    initHooks() {
-        this.hooks = {};
-        for (let hook in this.opts.hooks) {
-            this.bind(hook, this.opts.hooks[hook]);
-        }
-    }
-    /**
-     * Bind functions to a hook (subscriber).
-     * @param {string} 		hook The hook.
-     * @param {function} 	func The function.
-     */
-    bind(hook, func) {
-        //	Create an array for the hook if it does not yet excist.
-        this.hooks[hook] = this.hooks[hook] || [];
-        //	Push the function to the array.
-        this.hooks[hook].push(func);
-    }
-    /**
-     * Invoke the functions bound to a hook (publisher).
-     * @param {string} 	hook  	The hook.
-     * @param {array}	[args] 	Arguments for the function.
-     */
-    trigger(hook, args) {
-        if (this.hooks[hook]) {
-            for (var h = 0, l = this.hooks[hook].length; h < l; h++) {
-                this.hooks[hook][h].apply(this, args);
-            }
-        }
     }
 }
 /**	Plugin version. */

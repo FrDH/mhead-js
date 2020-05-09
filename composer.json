@@ -1,15 +1,15 @@
 {
-	"name"			: "mhead-js",
-	"version"		: "2.0.0",
-	"authors"		: "Fred Heusschen <info@frebsite.nl>",
-	"description"	: "A small framework for creating a beautiful mobile navigation header to accompany the mmenu.js menu on your website and webapp.",
-	"keywords"		: [
-		"app",
-		"mobile",
-		"navigation",
-		"head",
-		"header",
-		"navbar"
-	],
-	"license": "CC-BY-4.0"
+    "name": "mhead-js",
+    "version": "2.1.0",
+    "authors": "Fred Heusschen <info@frebsite.nl>",
+    "description": "A small framework for creating a beautiful mobile navigation header to accompany the mmenu.js menu on your website and webapp.",
+    "keywords": [
+        "app",
+        "mobile",
+        "navigation",
+        "head",
+        "header",
+        "navbar"
+    ],
+    "license": "CC-BY-4.0"
 }
