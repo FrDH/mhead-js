@@ -1,14 +1,15 @@
-mhead.js
-================
+# mhead.js
 
 A small framework for creating a beautiful mobile navigation header to accompany the mmenu.js navigation menu on your website and webapp.
 
-Need help? Have a look at [the documentation](https://mmenujs.com/mhead-plugin/) for demos and documentation.
+Need help? Have a look at [the documentation](https://mmenujs.com/mhead) for demos and documentation.
 
 ### Licence
+
 The mhead javascript plugin is licensed under the [CC-BY-4.0 license](http://creativecommons.org/licenses/by/4.0/).
 
 ### Development
+
 This project uses [Gulp](http://gulpjs.com/) to transpile, minify and concatenate the TS/JS and SCSS/CSS files.
 If you are unfamiliar with Gulp, check [this tutorial](https://travismaynard.com/writing/getting-started-with-gulp) on how to get started.<br />
 Run `gulp watch` in the command-line to put a watch on the files and run all scripts immediately after saving your changes.
