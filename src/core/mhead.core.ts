@@ -1,12 +1,9 @@
 import options from './_options';
-import version from '../_version';
 
 /**
  * Class for a sticky navigational header.
  */
 export default class Mhead {
-    /**	Plugin version. */
-    static version: string = version;
 
     /**	Default options for headers. */
     static options: mhOptions = options;

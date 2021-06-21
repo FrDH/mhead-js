@@ -1,6 +1,6 @@
 {
     "name": "mhead-js",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "main": "dist/mhead.js",
     "module": "src/mhead.js",
     "author": "Fred Heusschen <info@frebsite.nl>",
